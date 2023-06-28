@@ -22,6 +22,47 @@ Hence two optimizers:
 * Sophia-H
 * Sophia-G
 
+
+Hutchinson Algorithm:
+```python
+class Hutchinson(Estimator):
+
+    def __init__(self) -> None:
+        super().__init__()
+
+    """
+    
+    Computes the Diagonal of Hessian
+    
+    :param p - parameter
+    :param g - parameter gradient
+    :param batch - mini batch
+    
+    """
+
+    def compute(self, params: List[Tensor], loss: Tensor, batch: Tensor = null) -> List[Tensor]:
+
+        u: List[Tensor] = list([torch.randn_like(p) for p in params])  # noise matrices
+
+        J: Tuple[Tensor] = torch.autograd.grad(loss, params, create_graph=true)  # compute jacobian
+
+        gradu: List[Tensor] = []  # dot products with gradient and noise
+
+        for i, g in enumerate(J):
+            gradu.append((g * u[i]).sum())
+
+        hvp: Tuple[Tensor] = torch.autograd.grad(gradu, params,
+                                                 retain_graph=true)  # compute hessian vector product
+
+        hessian: List[Tensor] = []
+
+        for i, grad in enumerate(hvp):
+            hessian.append(grad * u[i])
+        return hessian
+```
+
+
+
 # Paper
 
 [Sophia Paper](https://arxiv.org/pdf/2305.14342.pdf)
