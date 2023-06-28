@@ -1,2 +1,4 @@
 # sophia
- implementation of sophia (Second-Order cliPped stocHastic optimizAtion)
+
+ Implementation of Sophia: Second Order Clipped Stochastic Optimization
+ 
