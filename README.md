@@ -17,7 +17,7 @@ By pre-conditioning on the local curvature, Sophia can converges ~2x faster than
 
 The clip is necessary in case of a flat dimension where the hessian is close to 0.
 
-The authors of sophia purpose 2 estimators for the diagonal of the hessian: **Hutchinson** and **Gauss-Netwon-Bartlett**
+The authors of sophia propose 2 estimators for the diagonal of the hessian: **Hutchinson** and **Gauss-Netwon-Bartlett**
 Hence two optimizers: 
 * Sophia-H
 * Sophia-G
