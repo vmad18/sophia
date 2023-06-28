@@ -42,7 +42,7 @@ class Hutchinson(Estimator):
 
     def compute(self, params: List[Tensor], loss: Tensor, batch: Tensor = null) -> List[Tensor]:
 
-        u: List[Tensor] = list([torch.randn_like(p) for p in params])  # noise matrices
+        u: List[Tensor] = list([torch.randn_like(p) for p in params])
 
         J: Tuple[Tensor] = torch.autograd.grad(loss, params, create_graph=true)  # compute jacobian
 
