@@ -3,7 +3,7 @@ from utils.consts import *
 
 """
 
-Estimates the value of the Hessian for Pre-conditioning
+Estimates the Hessian for Pre-conditioning
 
 """
 
@@ -25,15 +25,15 @@ class Hutchinson(Estimator):
     
     Computes the Diagonal of Hessian
     
-    :param p - parameter
-    :param g - parameter gradient
+    :param params - model parameters
+    :param loss - model loss
     :param batch - mini batch
     
     """
 
     def compute(self, params: List[Tensor], loss: Tensor, batch: Tensor = null) -> List[Tensor]:
 
-        u: List[Tensor] = list([torch.randn_like(p) for p in params])  # noise matrices
+        u: List[Tensor] = list([torch.randn_like(p) for p in params])
 
         J: Tuple[Tensor] = torch.autograd.grad(loss, params, create_graph=true)  # compute jacobian
 
@@ -57,7 +57,7 @@ class Hutchinson(Estimator):
 #     def __init__(self):
 #         super().__init__()
 #
-#     def compute(self, params: List[Tensor], loss: Tensor, batch: Tensor = null):
+#     def compute(self, params: List[Tensor], loss: Tensor, batch: Tensor = null) -> List[Tensor]:
 
 
 class Sophia(Optimizer):
