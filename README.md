@@ -34,8 +34,8 @@ class Hutchinson(Estimator):
     
     Computes the Diagonal of Hessian
     
-    :param p - parameter
-    :param g - parameter gradient
+    :param params - model parameters
+    :param loss - model loss
     :param batch - mini batch
     
     """
